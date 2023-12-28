@@ -1,4 +1,4 @@
-import Logo from "../Assets/Logo.png";
+import Logo from "../Assets/logo1.jpeg";
 import "./footer.css";
 import {
   FaFacebookF,
@@ -12,9 +12,29 @@ function Footer() {
     <div>
       <footer className="footer">
         <div className="footer-top">
+          {/* <div class="newsletter-container">
+            <div className="row">
+              <div className=" col-lg-12 col-md-6 ">
+                <div class="block-item">
+                  <div class="section-title">
+                    <h4>DROP YOUR PHONE NUMBER WE WILL CALL YOU BACK </h4>
+                  </div>
+                  <div class="content-container col-lg-6">
+                    We will call you back for your inquires.
+                    
+                    <form >
+                      <input type="number" />
+                      <input type="button" value="Submit"/>
+                    </form>
+                    
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div> */}
           <div className="container">
             <div className="row">
-              <div className="col-xl-3 col-lg-3 col-md-6">
+              <div className="col-xl-4 col-lg-3 col-md-6">
                 <div className="widget widget-info">
                   <div className="footer-logo">
                     <Link to={"/"}>
@@ -26,10 +46,10 @@ function Footer() {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-3 col-lg-3 col-6">
-                <div className="widget footer-widget ml-50">
+              <div className="col-xl-4 col-lg-3 col-6">
+                <div className="widget footer-widget ml-50" >
                   <h3 className="footer-title">Quick Links</h3>
-                  <ul>
+                  <ul >
                     <li>
                       <Link to={"/ourteam"}>
                         <span>Doctors</span>
@@ -45,11 +65,11 @@ function Footer() {
                         <span>About Us</span>
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link to={"/service"}>
                         <span>Services</span>
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link to={"/booking"}>
                         <span>Booking</span>
@@ -59,7 +79,7 @@ function Footer() {
                   </ul>
                 </div>
               </div>
-              <div className="col-xl-3 col-lg-3 col-6">
+              {/* <div className="col-xl-3 col-lg-3 col-6">
                 <div className="widget footer-widget ml-50">
                   <h3 className="footer-title">Our Services</h3>
                   <ul>
@@ -90,8 +110,8 @@ function Footer() {
                     </li>
                   </ul>
                 </div>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-6">
+              </div> */}
+              <div className="col-xl-4 col-lg-3 col-md-6">
                 <div className="widget widget-form">
                   <h3 className="footer-title">More About us</h3>
 
@@ -129,13 +149,13 @@ function Footer() {
             <div className="row">
               <div className="col-12 text-center">
                 <p className="copyright-text">
-                  Copyright © 2023 Redesign & Redeveloped by
+                  Copyright © 2023 Designed & Developed by
                   <a
                     href="https://github.com/piyush-agrawal6"
                     className="text-secondary"
                     target="_blank"
                   >
-                    Piyush Agrawal
+                   Team 31 
                   </a>
                 </p>
               </div>

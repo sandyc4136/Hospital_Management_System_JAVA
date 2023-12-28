@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import doctor from "../Assets/doctor.webp";
+import doctor from "../Assets/Doctor.jpeg";
 import "./banner.css";
 function Banner() {
   return (
@@ -8,7 +8,7 @@ function Banner() {
         <div className="row align-items-center">
           <div className="col-lg-7 col-md-7">
             <h5 className="backimg">Adding Care to your Life.</h5>
-            <h2>Protecting and Taking Care To Of Your Health</h2>
+            <h3>Protecting and Taking Care To Of Your Health</h3>
             <button>
               <Link to={"/about"}>Read More</Link>
             </button>

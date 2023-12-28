@@ -2,6 +2,7 @@ import AboutUs from "../Sections/aboutus";
 import NavBars from "../Sections/navbar";
 import Footer from "../Sections/footer";
 import ToTop from "../Sections/totop";
+import Team from "../Sections/Team";
 import "./about.css";
 import Services2 from "../Sections/services2";
 import { FiHome } from "react-icons/fi";
@@ -16,7 +17,7 @@ function About() {
           <div className="container">
             <div className="page-banner-entry text-center">
               <h1>About Us</h1>
-              <nav aria-label="breadcrumb" className="breadcrumb-row">
+              {/* <nav aria-label="breadcrumb" className="breadcrumb-row">
                 <ul className="breadcrumb">
                   <li className="breadcrumb-item">
                     <Link to={"/home"}>
@@ -28,13 +29,14 @@ function About() {
                     About Us
                   </li>
                 </ul>
-              </nav>
+              </nav> */}
             </div>
           </div>
         </div>
       </div>
       <AboutUs />
-      <Services2 />
+      <Team />
+      {/* <Services2 /> */}
       <Footer />
       <ToTop />
     </div>

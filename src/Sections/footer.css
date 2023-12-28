@@ -15,11 +15,27 @@ footer .footer-top {
 
 .widget {
   margin-bottom: 40px;
+
+}
+
+.container .row{
+  text-align: center;
 }
 
 footer .footer-logo {
   max-width: 190px;
   margin-bottom: 25px;
+}
+
+.footer-logo img{
+  height: 65px;
+  width: 150px;
+}
+
+ ul li{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 footer .ft-contact p {
@@ -64,7 +80,7 @@ footer .ft-contact .contact-bx .contact-number .number {
 
 footer .widget .footer-title {
   margin-bottom: 30px;
-  position: relative;
+  /* position: relative; */
   padding-bottom: 20px;
   font-size: 24px;
 }

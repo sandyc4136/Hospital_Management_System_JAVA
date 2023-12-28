@@ -5,11 +5,12 @@
   position: relative !important;
   background-image: url(../Assets/bg1.c53c8971.jpg);
   background-repeat: no-repeat;
-  height: 700px;
+  height: 350px;
   background-position: 50%;
   background-size: cover;
   overflow: hidden;
   z-index: 1;
+  padding-top: 20px;
 }
 
 .banner .row h5 {
@@ -32,8 +33,8 @@
 }
 
 .banner .row a {
-  padding: 20px 45px;
-  box-shadow: 0 5px 20px 0 rgba(241, 119, 50, 0.3) !important;
+  padding: 10px 45px;
+  box-shadow: 0 5px 10px 0 rgba(241, 119, 50, 0.3) !important;
   background-color: #f17732;
   color: #fff !important;
   font-size: 16px;
@@ -47,6 +48,8 @@
 
 .row button {
   border: none !important;
+  font-size: 25px;
+  /* height: 65px; */
 }
 
 .banner .row a:hover {
@@ -63,8 +66,9 @@
   height: auto;
   max-width: 100%;
   vertical-align: middle;
-  animation: up-down 2.5s infinite alternate;
+  /* animation: up-down 2.5s infinite alternate; */
   position: relative;
+  border-radius: 15px;
 }
 
 @keyframes up-down {

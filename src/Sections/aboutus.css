@@ -105,11 +105,16 @@ img {
   transform: rotate(45deg);
 }
 
+.section .container-fluid img{
+  border-radius: 25px;
+  height: 350px;
+}
+
 .heading-bx {
   margin-bottom: 45px;
 }
 
-.heading-bx h6 {
+.heading-bx h3 {
   font-weight: 700;
   display: inline-block;
   padding: 3px 15px;

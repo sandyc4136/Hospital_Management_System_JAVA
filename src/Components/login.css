@@ -9,6 +9,10 @@
   margin-bottom: 30px;
 }
 
+.appointment-form h2{
+  color: #f17732 !important;
+}
+
 a,
 a.active,
 a:focus,
@@ -43,3 +47,12 @@ a:hover {
 .forgotPass button {
   border-radius: 10px;
 }
+
+/* .section-area{
+background-image: url("../Assets/Login_backgroud.jpeg");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+width: 100vw;
+height: 100vh;
+} */

@@ -4,6 +4,10 @@ nav {
   transition: all 0.5s;
   z-index: 997;
 }
+.navbar-brand img {
+  height: 65px;
+  width: 150px;
+}
 
 nav .navbar-nav {
   margin-top: 12px;

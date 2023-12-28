@@ -9,6 +9,7 @@ import Service from "./Components/service";
 import Report from "./Components/Report";
 import { Routes, Route } from "react-router-dom";
 import Team from "./Sections/Team";
+import Signup from "./Components/Signup";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/service" element={<Service />} />
       <Route path="/Report" element={<Report />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/Signup" element={<Signup />} />
     </Routes>
   );
 }

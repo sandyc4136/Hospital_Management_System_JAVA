@@ -15,7 +15,7 @@ function Booking() {
           <div className="container">
             <div className="page-banner-entry text-center">
               <h1>Booking</h1>
-              <nav aria-label="breadcrumb" className="breadcrumb-row">
+              {/* <nav aria-label="breadcrumb" className="breadcrumb-row">
                 <ul className="breadcrumb">
                   <li className="breadcrumb-item">
                     <Link to={"/home"}>
@@ -27,7 +27,7 @@ function Booking() {
                     Booking
                   </li>
                 </ul>
-              </nav>
+              </nav> */}
             </div>
           </div>
         </div>

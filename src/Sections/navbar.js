@@ -2,13 +2,15 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Logo from "../Assets/Logo.png";
+import Logo from "../Assets/logo1.jpeg";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import {Signup} from "../Components/Signup";
 import "react-toastify/dist/ReactToastify.css";
+
 const notify = (text) => toast(text);
 
 function NavBars() {
@@ -25,17 +27,20 @@ function NavBars() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+              <Link to={"/"} className="nav-link">
+                Home
+              </Link>
               <Link to={"/ourteam"} className="nav-link">
                 Doctors
               </Link>
-              <NavDropdown title="About us" id="basic-nav-dropdown">
-                <Link to={"/team"} className="dropdown-item">
-                  Creators
+              {/* <NavDropdown title="About us" id="basic-nav-dropdown">  */}
+                <Link to={"/about"} className="nav-link">
+                  About Us
                 </Link>
-                <Link to={"/service"} className="dropdown-item">
+                {/* <Link to={"/service"} className="dropdown-item">
                   Services
-                </Link>
-              </NavDropdown>
+                </Link> */}
+              {/* </NavDropdown>  */}
               <Link to={"/booking"} className="nav-link">
                 Booking
               </Link>
@@ -60,14 +65,17 @@ function NavBars() {
                   </a>
                 </NavDropdown>
               )}
-              <Link to="/Report" className="nav-link">
+              <Link to={"/Signup"} className="nav-link">
+                  Register
+              </Link>
+              {/* <Link to="/Report" className="nav-link">
                 <button type="button">
                   Report
                   <span>
                     <IoIosArrowForward />
                   </span>
                 </button>
-              </Link>
+              </Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -3,6 +3,7 @@ import about2 from "../Assets/pic-2.0593bc2f.jpg";
 import about3 from "../Assets/pic-3.fa689b10.jpg";
 import { FaAmbulance, FaBed, FaSyringe } from "react-icons/fa";
 import { IoWater } from "react-icons/io5";
+import doctors from "../Assets/Doctors.jpeg";
 import "./aboutus.css"
 function AboutUs() {
   return (
@@ -11,7 +12,7 @@ function AboutUs() {
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-lg-6 mb-30">
-              <div className="about-images">
+              {/* <div className="about-images">
                 <ul>
                   <li>
                     <img className="img1" src={about1} alt="img" />
@@ -29,14 +30,15 @@ function AboutUs() {
                     </div>
                   </li>
                 </ul>
-              </div>
+              </div> */}
+              <img src={doctors}/>
             </div>
             <div className="col-lg-6 mb-30">
               <div className="heading-bx">
-                <h6>About Us</h6>
-                <h2 className="title">
+                {/* <h4>About Us</h4> */}
+                <h3 className="title">
                   The Great Place Of Medical Hospital Center
-                </h2>
+                </h3>
                 <p>
                   We provide the special tips and advice’s of heath care
                   treatment and high level of best technology involve in the our

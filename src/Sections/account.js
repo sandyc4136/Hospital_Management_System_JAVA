@@ -57,24 +57,25 @@ function Account() {
                   <div className="appointment-form form-wraper">
                     <h3>Book Appointment</h3>
                     <form action="#">
+                      
                       <div className="form-group">
                         <input
-                          type="email"
+                          type="text"
                           className="form-control"
-                          placeholder="email"
-                          value={formData.email}
-                          name="email"
+                          placeholder="Your Full Name"
+                          value={formData.patientName}
+                          name="patientName"
                           onChange={handleFormChange}
                           required
                         ></input>
                       </div>
                       <div className="form-group">
                         <input
-                          type="text"
+                          type="email"
                           className="form-control"
-                          placeholder="Your Name"
-                          value={formData.patientName}
-                          name="patientName"
+                          placeholder="Email"
+                          value={formData.email}
+                          name="email"
                           onChange={handleFormChange}
                           required
                         ></input>
@@ -94,7 +95,7 @@ function Account() {
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="disease"
+                          placeholder="Disease"
                           value={formData.disease}
                           name="disease"
                           onChange={handleFormChange}
