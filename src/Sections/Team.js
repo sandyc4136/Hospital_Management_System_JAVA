@@ -1,13 +1,22 @@
 import "../index.css";
+import React from 'react';
 import { BsGithub, BsLinkedin,BsInstagram} from "react-icons/bs";
+import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Aayushi from "../Assets/Aayushi.jpeg";
 import Atul from "../Assets/Atul.jpeg";
 import Sandip from "../Assets/Sandip.jpeg";
 import Dayanand from "../Assets/Dayanand.jpeg";
 import NavBars from "./navbar";
 import Footer from "./footer";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 function Team() {
+
+  const styles = {
+    color: 'white',
+    'text-decoration': 'none'
+  };
   return (
     <div>
       {/* <NavBars /> */}
@@ -164,6 +173,11 @@ function Team() {
                   </ul>
                 </div>
               </div>
+            </div>
+            <div className="col-lg-3 col-sm-6">
+            <Button className="btn primary__btn w-75">
+                  <Link to="/" style={styles}>Back to Home</Link>
+            </Button>
             </div>
           </div>
         </div>

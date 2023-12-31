@@ -1,7 +1,5 @@
 
-option{
-    width: 100%;
-}
+
 form{
     margin-top: 10px;
 }
@@ -9,3 +7,9 @@ form{
 h3{
     color: #f17732 !important;
   }
+
+  .sign-up{
+    /* background-image: url("../Assets/Signup_background.jpeg");
+    background-size: cover; */
+    margin: 70px;
+  } 

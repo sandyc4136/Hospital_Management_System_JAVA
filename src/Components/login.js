@@ -1,62 +1,57 @@
 import "./login.css";
 import "../index.css";
-import logo from "../Assets/Logo.png";
-import LoginImage from "../Assets/LoginImage.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 import NavBars from "../Sections/navbar";
+import { Button } from 'reactstrap';
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authLogin, forgotPassword } from "../Redux/auth/action";
-
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// const notify = (text) => toast(text);
+import { useHistory } from "react-router-dom";
+import loginValidation from "./Validation/loginValidation";
+import axios from "axios";
 
 function Login() {
-  const [form, setForm] = useState({ patientID: "", password: "" });
-  const [email, setemail] = useState("");
-  const dispatch = useDispatch();
-  const onChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+
+  // const history= useHistory();
+
+  const styles = {
+    color: 'white',
+    'text-decoration': 'none'
   };
-  const navigate = useNavigate();
-  const handleClick = (e) => {
-    try {
-      dispatch(authLogin(form)).then((res) => {
-        if (res.message === "Login Successful.") {
-          // notify("Login Successful.");
-          return navigate("/");
-        }
-        if (res.message === "Wrong credentials, Please try again.") {
-          // return notify("Wrong credentials, Please try again.");
-        }
-        if (res.message === "Error occurred, unable to Login.") {
-        }
-      });
-    } catch (error) {
-      console.log(error);
-      // return notify("Error occurred, unable to Login.");
-    }
+
+  const [credentials, setCredentials] = useState({
+    email:undefined,
+    password:undefined
+  });
+
+  // const [errors, setErrors]=useState({});
+  const [errorMessage, setErrorMessage] = useState();
+
+  const handleChange = e =>{
+    setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }));
   };
-  // const [forgotLoading, setforgetLoading] = useState(false);
-  // const HandlePassword = () => {
-  //   let data = { email, type: "patient" };
-  //   setforgetLoading(true);
-  //   dispatch(forgotPassword(data)).then((res) => {
-  //     if (res.message === "User not found") {
-  //       setforgetLoading(false);
-  //       return notify("User Not Found");
-  //     }
-  //     setemail("");
-  //     setforgetLoading(false);
-  //     return notify("Account Details Send");
-  //   });
+
+  // const handleClick = (e) => {
+  //   setErrors(loginValidation(credentials));
   // };
+  
+  function login(event) {
+    event.preventDefault();
+    axios.post('http://localhost:8080/customer/login', credentials).then((response => {
+        console.log(response);
+        console.log(response.data);
+        if(response.data.status) {
+            sessionStorage.setItem('customerId', response.data.customerId);
+            sessionStorage.setItem('name', response.data.name);
+            // history.push('/dashboard')
+        }
+        else {
+            setErrorMessage(response.data.messageIfAny);
+        }
+    }))
+}
 
   return (
     <>
-      {/* <ToastContainer /> */}
-      {/* <NavBars /> */}
+   
       <div className="section-area account-wraper2">
         <div className="container">
           <div className="row justify-content-center">
@@ -68,57 +63,50 @@ function Login() {
                 <div >
                   <h2> <b>Patient Login</b></h2>
                 </div>
-                <form action="#">
+                <form onSubmit={login} method="post">
                   <div className="form-group">
                     <h6>Email</h6>
                     <input
-                      name="patientID"
-                      value={form.patientID}
+                      name="email"
+                      value={credentials.email}
                       type="text"
                       className="form-control"
                       placeholder="Email"
-                      onChange={onChange}
+                      onChange={handleChange}
                       required
                     ></input>
+                    {/* {errors.email && <p style={{color:"red", fontsize: "14px"}}>{errors.email}</p>} */}
                   </div>
                   <div className="form-group">
                     <h6>Password</h6>
                     <input
                       name="password"
-                      value={form.password}
+                      value={credentials.password}
                       type="password"
                       className="form-control"
                       placeholder="Password"
-                      onChange={onChange}
+                      onChange={handleChange}
                       required
                     ></input>
+                    {/* {errors.password && <p style={{color:"red", fontsize: "14px"}}>{errors.password}</p>} */}
                   </div>
-                  <div className="form-group" onClick={handleClick}>
+                  <div className="form-group" >
                     <Link
                       type="botton"
                       className="btn mb-30 btn-lg btn-primary w-100"
                     >
                       Login
                     </Link>
-                    {/* <p>Forgot Account Details?</p> */}
                   </div>
                 </form>
-                {/* <div className="forgotPass">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={({ target }) => setemail(target.value)}
-                    placeholder="Enter email"
-                  />
-                  <br />
-                  <button onClick={HandlePassword}>
-                    {forgotLoading ? "Loading.." : "Send Mail"}
-                  </button>
-                </div> */}
                 <div>
 
                   Not registered yet? <a href="/Signup">Register here</a>
+                </div>
+                <div >
+                  <Button className="btn primary__btn w-75">
+                        <Link to="/" style={styles}>Back to Home</Link>
+                  </Button>
                 </div>
             </div>
             </div>

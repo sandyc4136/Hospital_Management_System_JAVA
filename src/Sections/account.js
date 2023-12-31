@@ -14,7 +14,7 @@ function Account() {
     patientName: "",
     age: "",
     gender: "",
-    mobile: "",
+    contact: "",
     address: "",
     email: "",
     disease: "",
@@ -82,11 +82,11 @@ function Account() {
                       </div>
                       <div className="form-group">
                         <input
-                          type="number"
+                          type="text"
                           className="form-control"
                           placeholder="Phone Number"
-                          value={formData.mobile}
-                          name="mobile"
+                          value={formData.contact}
+                          name="contact"
                           onChange={handleFormChange}
                           required
                         ></input>
@@ -98,6 +98,28 @@ function Account() {
                           placeholder="Disease"
                           value={formData.disease}
                           name="disease"
+                          onChange={handleFormChange}
+                          required
+                        ></input>
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Blood Group"
+                          value={formData.blood_group}
+                          name="blood_group"
+                          onChange={handleFormChange}
+                          required
+                        ></input>
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Department"
+                          value={formData.department}
+                          name="department"
                           onChange={handleFormChange}
                           required
                         ></input>

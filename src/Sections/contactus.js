@@ -1,42 +1,91 @@
+import axios from 'axios';
+import {useState} from 'react';
 
+function Contactus(){
 
-function contactus(){
+    let initialData = {
+        name: "",
+        email: "",
+        contact: "",
+        message:""
+      };
+
+    const [userData, setUserData] = useState(initialData);
+    const [responseData, setResponseData] = useState({});
+
+    function handleInput(e) {
+        setUserData({ ...userData, [e.target.name]: e.target.value })        
+        };
+
+    function contact(e) {
+        e.preventDefault();
+        let url = `http://localhost:8080/api/contactus`;
+        axios.post(url,userData).then((response) => {
+            //console.log(response.data);
+            setResponseData(response);
+            if(response.data.status)
+                alert("Thank You for contacting us");
+            else
+                alert("Please fill all the details!");
+            })
+        }
+        
     return (
         <>
+        
         <div className="container-fluid">
-          <div className="row align-items-center">
+          <div className="row align-items-center ">
             <div className="col-lg-6 mb-30">
                 <div className="col-lg-6">
                 Thank you for your interest in our Hospital Management System. We value your feedback, inquiries, and suggestions. Please feel free to reach out to us using the contact information provided below.
-                </div>
+                </div><br/>
                 <div className="col-lg-6">
-                    <p><b>Email:</b> info@hospitalmanagementsystem.com</p>
-                    <p><b>Phone:</b> +1 (555) 123-4567</p>
-
+                    <p><b>Email : </b>info@wecare.com</p><p><b>Phone :</b> +1 (555) 123-4567</p>
                 </div>
-                <div><b>Address:</b>
-                        Hospital Management System Headquarters
-                        123 Health Tech Avenue
-                        Cityville, State 54321
-                        Country
+                <div className="col-lg-6"><p><b>Address : </b>
+                        WeCare Hospital Management System 
+                        N/92 Nayapalli,
+                        Bhubaneswar, Odisha
+                        </p>
                 </div>
             </div>
-            <div className="col-lg-6 mb-30">
-                <form action="#" className="gap-1">
-                <label>Full Name :</label>
-                <input type="text"/><br/><br/>
-                <label>Email :</label>
-                <input type="email"/><br/><br/>
-                <label>Contact No. :</label>
-                <input type="text"/><br/><br/>
-                <label>Message :</label>
-                <input type="text"/><br/><br/>
-                <input type="submit" value="Submit"/>
-                </form>
+            <div className="col-lg-6  mb-30" >
+                <div className="form-div">
+                    <h3 class="text-center">Gen in Touch with our Medical Experts</h3>
+                    <form action="/home" onSubmit={contact} method="post">
+                        <div className="form-group"> 
+                            <div className="form-label">
+                                <label>Full Name :</label>
+                                <input type="text" className="form-control" onChange={handleInput} name="name"/><br/>
+                            </div>  
+                        </div>
+                        <div className="form-group"> 
+                            <div className="form-label">
+                                <label>Email :</label>
+                                <input type="email" className="form-control" name="email" onChange={handleInput}  /><br/>
+                            </div>
+                        </div>
+                        <div className="form-group"> 
+                            <div className="form-label">
+                                <label>Contact No. :</label>
+                                <input type="text" className="form-control"name="contact"  onChange={handleInput}  /><br/>
+                            </div>
+                        </div>
+                        <div className="form-group"> 
+                            <div className="form-label">
+                                <label>Message :</label>
+                                <textarea id="message" name="message" rows="4" className="form-control" onChange={handleInput}   required></textarea><br/>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 align-items-center form-group"> 
+                            <button type="submit" className="btn mb-30 btn-lg btn-primary w-50" >Submit</button>
+                        </div>
+                    </form> 
+                </div>
             </div>
         </div>
     </div>
     </>
     )
 }
-export default contactus;
+export default Contactus;

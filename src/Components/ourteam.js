@@ -10,7 +10,7 @@ import member4 from "../Assets/Doctor3.jpeg";
 import member5 from "../Assets/Doctor6.jpeg";
 import member6 from "../Assets/Doctor4.jpeg";
 import ToTop from "../Sections/totop";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function OurTeam() {
   return (

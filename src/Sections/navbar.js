@@ -60,13 +60,14 @@ function NavBars() {
                   <Link to={"/login"} className="dropdown-item">
                     Patient
                   </Link>
-                  <a href="https://hm-system.netlify.app/" className="dropdown-item">
+                  {/* <a href="https://hm-system.netlify.app/" className="dropdown-item"> */}
+                  <a href="http://localhost:3003" className="dropdown-item">
                     Staff
                   </a>
                 </NavDropdown>
               )}
               <Link to={"/Signup"} className="nav-link">
-                  Register
+                  Sign Up
               </Link>
               {/* <Link to="/Report" className="nav-link">
                 <button type="button">

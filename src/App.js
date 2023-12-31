@@ -10,6 +10,7 @@ import Report from "./Components/Report";
 import { Routes, Route } from "react-router-dom";
 import Team from "./Sections/Team";
 import Signup from "./Components/Signup";
+import BookingStatus from "./Components/BookingStatus";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/Report" element={<Report />} />
       <Route path="*" element={<NotFound />} />
       <Route path="/Signup" element={<Signup />} />
+      <Route path="/booking_status" element={<BookingStatus />} />
     </Routes>
   );
 }
