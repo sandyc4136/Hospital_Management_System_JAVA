@@ -19,14 +19,18 @@ function Contactus(){
 
     function contact(e) {
         e.preventDefault();
-        let url = `http://localhost:8080/api/contactus`;
+        let url = `http://localhost:8080/contacts/create`;
         axios.post(url,userData).then((response) => {
             //console.log(response.data);
             setResponseData(response);
-            if(response.data.status)
+            try{
                 alert("Thank You for contacting us");
-            else
+            }
+                
+            catch(error){
                 alert("Please fill all the details!");
+            }
+                
             })
         }
         
@@ -40,7 +44,7 @@ function Contactus(){
                 Thank you for your interest in our Hospital Management System. We value your feedback, inquiries, and suggestions. Please feel free to reach out to us using the contact information provided below.
                 </div><br/>
                 <div className="col-lg-6">
-                    <p><b>Email : </b>info@wecare.com</p><p><b>Phone :</b> +1 (555) 123-4567</p>
+                    <p><b>Email : </b>info@wecare.com</p><p><b>Phone :</b> +91 94123-45673</p>
                 </div>
                 <div className="col-lg-6"><p><b>Address : </b>
                         WeCare Hospital Management System 
@@ -51,7 +55,7 @@ function Contactus(){
             </div>
             <div className="col-lg-6  mb-30" >
                 <div className="form-div">
-                    <h3 class="text-center">Gen in Touch with our Medical Experts</h3>
+                    <h3 class="text-center">Get in Touch with our Medical Experts</h3>
                     <form action="/home" onSubmit={contact} method="post">
                         <div className="form-group"> 
                             <div className="form-label">

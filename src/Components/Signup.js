@@ -4,13 +4,21 @@ import LoginImage from "../Assets/Login.jpeg";
 import "../Components/Signup.css";
 import axios from 'axios';
 import registerValidation from './Validation/registerValidation';
+import { useNavigate } from 'react-router-dom';
 
     function Signup(){
 
+        const navigate=useNavigate();
       const [credentials, setCredentials] = useState({
         name:'',
         email:'',
-        password:''
+        password:'',
+        age:'',
+        bloodGroup:'',
+        disease:'',
+        department:'',
+        dateOfBirth:''
+
       });
 
       const [errors, setErrors]=useState({});
@@ -29,11 +37,14 @@ import registerValidation from './Validation/registerValidation';
           let url = `http://localhost:8080/customer/register`;
           axios.post(url,credentials).then((response) => {
               console.log(response.data);
+              
               setResponseData(response);
-              if(response.data.status)
-                  alert("Registered");
-              else
-                  alert("Please fill all the details!");
+              if(response.data.ok || response.data.status){
+                navigate("/");
+                alert("Registered");
+              }
+            //   else
+            //       alert("Please fill all the details!");
               })
           }
 
@@ -56,11 +67,11 @@ import registerValidation from './Validation/registerValidation';
                         placeholder="Full Name"
                         name="name"
                         onChange={handleInput}
-                        
+                        required
                     />
                     {errors.name && <p style={{color:"red", fontsize: "14px"}}>{errors.name}</p>}
                     </div>
-                    {/* <div className="mb-3">
+                    <div className="mb-3">
                     <label><h6>Age</h6></label>
                     <input
                         type="number"
@@ -70,8 +81,8 @@ import registerValidation from './Validation/registerValidation';
                         onChange={handleInput}
                         required
                     />
-                    </div> */}
-                    {/* <div className="mb-3">
+                    </div>
+                    <div className="mb-3">
                     <label><h6>Blood Group</h6></label>
                     <input
                         type="text"
@@ -79,6 +90,27 @@ import registerValidation from './Validation/registerValidation';
                         placeholder="bloodGroup"
                         name="bloodGroup"
                         onChange={handleInput}
+                        required
+                    />
+                    </div>
+                    <div className="mb-3">
+                    <label><h6>Health Issue</h6></label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Issues"
+                        name="disease"
+                        onChange={handleInput}
+                        required
+                    />
+                    </div>
+                    {/* <div className="mb-3">
+                    <label><h6>Contact No.</h6></label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Contact Number"
+                        name="contactNo"
                         required
                     />
                     </div> */}
@@ -90,20 +122,25 @@ import registerValidation from './Validation/registerValidation';
                         placeholder="Enter email"
                         name="email"
                         onChange={handleInput}
-                     
+                        required
                     />
                     {errors.email && <p style={{color:"red", fontsize: "14px"}}>{errors.email}</p>}
                     </div>
-                    {/* <div className="mb-3">
-                    <label><h6>Gender </h6></label>
+                    <div className="mb-3">
+                    <label><h6>Department </h6></label>
                   
-                    <select id="gender" className="form-control" name="gender">
+                    <select id="department" className="form-control" name="department" onChange={handleInput} required>
                     <option>Select</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    required
+                    <option>Dentist</option>
+                    <option>Cardiologist</option>
+                    <option>Neurologist</option>
+                    <option>Physiotherapist</option>
+                    <option>ENT</option>
+                    <option>Surgery</option>
+                    <option>General</option>
+                    
                     </select>
-                    </div>  */}
+                    </div> 
                     {/* <div className="mb-3">
                     <label><h6>Contact No.</h6></label>
                     <input
@@ -114,16 +151,17 @@ import registerValidation from './Validation/registerValidation';
                         required
                     />
                     </div> */}
-                    {/* <div className="mb-3">
+                    <div className="mb-3">
                     <label><h6>Date of Birth</h6></label>
                     <input
                         type="date"
                         className="form-control"
                         placeholder="Date Of Birth"
                         name="dateOfBirth"
+                        onChange={handleInput}
                         required
                     />
-                    </div> */}
+                    </div>
                     <div className="mb-3">
                     <label><h6>Password</h6></label>
                     <input
@@ -132,7 +170,7 @@ import registerValidation from './Validation/registerValidation';
                         placeholder="Enter password"
                         name="password"
                         onChange={handleInput}
-                     
+                        required
                     />
                      {errors.password && <p style={{color:"red", fontsize: "14px"}}>{errors.password}</p>}
                     </div>

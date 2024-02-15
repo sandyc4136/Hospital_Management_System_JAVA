@@ -37,7 +37,7 @@ function Account() {
           let data = { ...formData, patientID: res.id };
           dispatch(createBooking(data));
           setFormData(initialData);
-          notify("Appointment Booked Successfully");
+          // notify("Appointment Booked Successfully");
           setLoading(false);
         }
       );

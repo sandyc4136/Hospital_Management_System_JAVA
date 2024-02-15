@@ -1,15 +1,15 @@
 import "./login.css";
 import "../index.css";
 import { Link, useNavigate } from "react-router-dom";
-import NavBars from "../Sections/navbar";
+// import NavBars from "../Sections/navbar";
 import { Button } from 'reactstrap';
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import loginValidation from "./Validation/loginValidation";
+import { ToastContainer,toast } from "react-toastify";
 import axios from "axios";
 
 function Login() {
-
+  const navigate=useNavigate();
   // const history= useHistory();
 
   const styles = {
@@ -18,36 +18,81 @@ function Login() {
   };
 
   const [credentials, setCredentials] = useState({
-    email:undefined,
-    password:undefined
+    email:'',
+    password:''
   });
 
-  // const [errors, setErrors]=useState({});
-  const [errorMessage, setErrorMessage] = useState();
+  const [errors, setErrors]=useState({});
+  let[error,setError]=useState({errorData:null,isError:false})
 
-  const handleChange = e =>{
-    setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }));
+    const handleChange=(event,property)=>{
+        setCredentials(event.target.values); 
+      }
+
+      const handleEmailChange = (e) =>{
+            setCredentials({
+              ...credentials,
+              email: e.target.value,
+            });
+          };
+
+      const handlePasswordChange = (e) => {
+        setCredentials({
+            ...credentials,
+            password: e.target.value,
+        });
+    };
+
+    const handleEmail=(event)=>{
+      setCredentials(setCredentials(event.target.values));
+    }
+
+    const handlePassword=(event)=>{
+      setCredentials(setCredentials(event.target.values));
+    }
+
+    console.log(credentials);
+    console.log("aaaaaaaaaaaaa");
+
+  const handleClick = (e) => {
+    setErrors(loginValidation(credentials));
   };
-
-  // const handleClick = (e) => {
-  //   setErrors(loginValidation(credentials));
-  // };
   
-  function login(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:8080/customer/login', credentials).then((response => {
-        console.log(response);
-        console.log(response.data);
-        if(response.data.status) {
-            sessionStorage.setItem('customerId', response.data.customerId);
-            sessionStorage.setItem('name', response.data.name);
-            // history.push('/dashboard')
-        }
-        else {
-            setErrorMessage(response.data.messageIfAny);
-        }
-    }))
-}
+        console.log(credentials);
+      
+        // if(credentials.email===undefined||credentials.email.trim()===''){
+        //   // toast.error("Email required");
+        //   alert("Email required");
+        //   return;
+        // }
+
+        // console.log(credentials);
+        // console.log("bbbbbbbbbbbbbbb");
+
+        // if(credentials.password===undefined||credentials.password.trim()===''){
+        //   toast.error("password required");
+        //   return;
+        // }
+
+        console.log(credentials);
+        console.log("ccccccccccccccc");
+       
+        localStorage.setItem('user', credentials.email);
+
+          axios.post('http://localhost:8080/customer/login', credentials)
+          .then(response => {
+            if(response.data.ok){
+              navigate("/");
+              console.log(response.data);
+                alert("Login Successfull");
+            }
+          })
+          .catch(error => {console.error('Error fetching Details:', error)
+              alert("invalid Login");
+           });
+    }
 
   return (
     <>
@@ -63,45 +108,55 @@ function Login() {
                 <div >
                   <h2> <b>Patient Login</b></h2>
                 </div>
-                <form onSubmit={login} method="post">
+                <form   onSubmit={handleSubmit}>
                   <div className="form-group">
                     <h6>Email</h6>
                     <input
                       name="email"
-                      value={credentials.email}
-                      type="text"
+                      
+                      type="email"
                       className="form-control"
-                      placeholder="Email"
-                      onChange={handleChange}
-                      required
-                    ></input>
-                    {/* {errors.email && <p style={{color:"red", fontsize: "14px"}}>{errors.email}</p>} */}
+                      placeholder="Enter Email"
+                      values={credentials.email}
+                      onChange={handleEmailChange}
+                      
+                    />
+                    {errors.email && <p style={{color:"red", fontsize: "14px"}}>{errors.email}</p>}
                   </div>
                   <div className="form-group">
                     <h6>Password</h6>
                     <input
                       name="password"
-                      value={credentials.password}
+                     
                       type="password"
                       className="form-control"
                       placeholder="Password"
-                      onChange={handleChange}
-                      required
-                    ></input>
-                    {/* {errors.password && <p style={{color:"red", fontsize: "14px"}}>{errors.password}</p>} */}
+                      values={credentials.password}
+                      onChange={handlePasswordChange}
+                      
+                    />
+                    {errors.password && <p style={{color:"red", fontsize: "14px"}}>{errors.password}</p>}
                   </div>
                   <div className="form-group" >
-                    <Link
-                      type="botton"
+                    {/* <Link
+                      type="button"
                       className="btn mb-30 btn-lg btn-primary w-100"
                     >
                       Login
-                    </Link>
+                    </Link> */}
+                    <Button
+                     
+                     variant="success"
+                     type="submit" 
+                     onClick={handleClick} 
+                     >             
+                       Login 
+                    </Button>
                   </div>
                 </form>
                 <div>
 
-                  Not registered yet? <a href="/Signup">Register here</a>
+                  Not registered yet? <a href="/Signup">Register here...</a>
                 </div>
                 <div >
                   <Button className="btn primary__btn w-75">

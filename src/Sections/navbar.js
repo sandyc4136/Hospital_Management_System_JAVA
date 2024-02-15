@@ -10,12 +10,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import {Signup} from "../Components/Signup";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
 
 const notify = (text) => toast(text);
 
 function NavBars() {
-  const { data } = useSelector((store) => store.auth);
-  const dispatch = useDispatch();
+  // const { data } = useSelector((store) => store.auth);
+  // const dispatch = useDispatch();
+  const [isLogin,setIsLogin] = useState(false);
+
+  useEffect( ()=> {
+    let email=localStorage.getItem("user");
+    if (email) {
+        setIsLogin(true);
+    }else{
+      setIsLogin(false);
+    }
+   },[isLogin]);
+
   return (
     <div className="navStick">
       <ToastContainer />
@@ -41,9 +53,35 @@ function NavBars() {
                   Services
                 </Link> */}
               {/* </NavDropdown>  */}
-              <Link to={"/booking"} className="nav-link">
-                Booking
-              </Link>
+
+              { isLogin &&  <Link to={"/booking"} className="nav-link">Booking </Link> }
+
+              {isLogin ?  (
+                  <Link
+                    to="/"
+                    className="nav-link"
+                    onClick={() => {
+                      localStorage.removeItem("user");
+                      setIsLogin(false);
+                      // dispatch({ type: "AUTH_LOGOUT" });
+                      // notify("Logged out");    
+                      alert("Logged out");                
+                    }}
+                  >
+                    Logout
+                  </Link>) : (
+                  <NavDropdown title="Login" id="basic-nav-dropdown">
+                    <Link to={"/login"} className="dropdown-item">
+                      Patient
+                </Link>
+                  
+                    <a href="http://localhost:3003" className="dropdown-item">
+                      Staff
+                    </a>
+                  </NavDropdown>
+              )}
+
+              {/*
               {data?.isAuthenticated ? (
                 <Link
                   to=""
@@ -60,15 +98,19 @@ function NavBars() {
                   <Link to={"/login"} className="dropdown-item">
                     Patient
                   </Link>
-                  {/* <a href="https://hm-system.netlify.app/" className="dropdown-item"> */}
+                  
                   <a href="http://localhost:3003" className="dropdown-item">
                     Staff
                   </a>
                 </NavDropdown>
               )}
+              */}
+
+            { !isLogin && 
               <Link to={"/Signup"} className="nav-link">
                   Sign Up
               </Link>
+              }
               {/* <Link to="/Report" className="nav-link">
                 <button type="button">
                   Report

@@ -28,17 +28,17 @@ function BookingStatus() {
               </thead>
               <tbody>
                 <tr >
-                  <td>Data 1</td>
-                  <td>Data 2</td>
+                  <td></td>
+                  {/* <td>Data 2</td>
                   <td>Data 4</td>
                   <td>Data 5</td>
                   <td>Data 6</td>
                   <td>Data 7</td>
                   <td>Data 8</td>
-                  <td>Data 9</td>
+                  <td>Data 9</td> */}
                 </tr>
                 <tr>
-                  <td>Data 10</td>
+                  {/* <td>Data 10</td>
                   <td>Data 11</td>
                   <td>Data 12</td>
                   <td>Data 13</td>
@@ -46,7 +46,7 @@ function BookingStatus() {
                   <td>Data 15</td>
                   <td>Data 16</td>
                   <td>Data 17</td>
-                  <td>Data 18</td>
+                  <td>Data 18</td> */}
                 </tr>
               </tbody>
             </table>
