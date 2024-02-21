@@ -1,8 +1,10 @@
 import axios from 'axios';
 import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Contactus(){
 
+    const navigate=useNavigate();
     let initialData = {
         name: "",
         email: "",
@@ -25,12 +27,10 @@ function Contactus(){
             setResponseData(response);
             try{
                 alert("Thank You for contacting us");
-            }
-                
+            } 
             catch(error){
                 alert("Please fill all the details!");
             }
-                
             })
         }
         
@@ -56,7 +56,7 @@ function Contactus(){
             <div className="col-lg-6  mb-30" >
                 <div className="form-div">
                     <h3 class="text-center">Get in Touch with our Medical Experts</h3>
-                    <form action="/home" onSubmit={contact} method="post">
+                    <form  onSubmit={contact} method="post">
                         <div className="form-group"> 
                             <div className="form-label">
                                 <label>Full Name :</label>

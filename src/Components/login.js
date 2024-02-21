@@ -81,16 +81,20 @@ function Login() {
        
         localStorage.setItem('user', credentials.email);
 
-          axios.post('http://localhost:8080/customer/login', credentials)
+          axios.post(`http://localhost:8080/patientLogin`, credentials)
           .then(response => {
-            if(response.data.ok){
+            if(response.data.status){
               navigate("/");
               console.log(response.data);
-                alert("Login Successfull");
+                alert("Login Successful");
             }
+            else
+            alert("invalid Login");
           })
           .catch(error => {console.error('Error fetching Details:', error)
-              alert("invalid Login");
+          // if (!error.status) {
+               alert("invalid Login");
+          // }
            });
     }
 
@@ -108,7 +112,7 @@ function Login() {
                 <div >
                   <h2> <b>Patient Login</b></h2>
                 </div>
-                <form   onSubmit={handleSubmit}>
+                <form  action="/"  onSubmit={handleSubmit} method="post">
                   <div className="form-group">
                     <h6>Email</h6>
                     <input
@@ -145,10 +149,9 @@ function Login() {
                       Login
                     </Link> */}
                     <Button
-                     
                      variant="success"
                      type="submit" 
-                     onClick={handleClick} 
+                      onClick={handleClick} 
                      >             
                        Login 
                     </Button>

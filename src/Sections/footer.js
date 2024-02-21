@@ -70,11 +70,11 @@ function Footer() {
                         <span>Services</span>
                       </Link>
                     </li> */}
-                    <li>
+                    {/* <li>
                       <Link to={"/booking"}>
                         <span>Booking</span>
                       </Link>
-                    </li>
+                    </li> */}
                     {/* <li>
                       <Link to={"/contactus"}>
                         <span>Contact us</span>

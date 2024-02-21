@@ -1,50 +1,60 @@
 import MobileImg from "../Assets/mobile.f82d7322.png";
 import WomanImg from "../Assets/women.eb5c49c5.png";
 import "./account.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createBooking, createPatient } from "../Redux/booking/action";
+import axios from 'axios';
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const notify = (text) => toast(text);
 
 function Account() {
-  let initialData = {
-    patientName: "",
-    age: "",
-    gender: "",
-    contact: "",
-    address: "",
-    email: "",
-    disease: "",
-    time: "",
-    date: "",
+  const id1 = localStorage.getItem('id');
+  const initialData = {
+    doctor_id: "",
+    patient_id: id1,
+    appointmentDate: "",
+    appointmentTime: "",
   };
+  
   const [formData, setFormData] = useState(initialData);
   const [loading, setLoading] = useState(false);
+  const [doctors, setDoctors] = useState([]);
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    // Fetch list of doctors from the backend when component mounts
+    axios.get('http://localhost:8080/fetchDoctors')
+      .then(response => setDoctors(response.data))
+      .catch(error => console.error('Error fetching doctors:', error));
+  }, []);
+
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      dispatch(createPatient({ ...formData, patientID: Date.now() })).then(
-        (res) => {
-          console.log(res);
-          let data = { ...formData, patientID: res.id };
-          dispatch(createBooking(data));
-          setFormData(initialData);
-          // notify("Appointment Booked Successfully");
-          setLoading(false);
+    setLoading(true);
+    
+    axios.post('http://localhost:8080/bookAppointment', formData)
+      .then(response => {
+        console.log(response.data);
+        if(response.data.status) { 
+          alert("Please fill all the details!");
+        } else {
+          alert("Appointment successful!");
         }
-      );
-    } catch (error) {
-      console.log(error);
-    }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error booking appointment:', error);
+        setLoading(false);
+      });
   };
+  
   return (
     <div>
       <ToastContainer />
@@ -56,115 +66,28 @@ function Account() {
                 <div className="col-xl-5 col-lg-6 col-md-6 col-sm-12">
                   <div className="appointment-form form-wraper">
                     <h3>Book Appointment</h3>
-                    <form action="#">
-                      
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Your Full Name"
-                          value={formData.patientName}
-                          name="patientName"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="email"
-                          className="form-control"
-                          placeholder="Email"
-                          value={formData.email}
-                          name="email"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Phone Number"
-                          value={formData.contact}
-                          name="contact"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Disease"
-                          value={formData.disease}
-                          name="disease"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Blood Group"
-                          value={formData.blood_group}
-                          name="blood_group"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Department"
-                          value={formData.department}
-                          name="department"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="number"
-                          className="form-control"
-                          placeholder="Age"
-                          value={formData.age}
-                          name="age"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
+                    <form method="post" onSubmit={handleSubmit}>
                       <div className="form-group">
                         <select
-                          className="form-select form-control"
-                          name="gender"
+                          className="form-control custom-select"
+                          name="doctor_id"
                           onChange={handleFormChange}
+                          value={formData.doctor_id}
                           required
                         >
-                          <option value="">Select Gender</option>
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                          <option value="other">Other</option>
+                          <option value="">Select Doctor</option>
+                          {doctors.map(doctor => (
+                            <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
+                          ))}
                         </select>
                       </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Address"
-                          value={formData.address}
-                          name="address"
-                          onChange={handleFormChange}
-                          required
-                        ></input>
-                      </div>
+                      
                       <div className="form-group">
                         <input
                           type="date"
                           className="form-control"
-                          value={formData.date}
-                          name="date"
+                          value={formData.appointmentDate}
+                          name="appointmentDate"
                           onChange={handleFormChange}
                           required
                         ></input>
@@ -173,8 +96,8 @@ function Account() {
                         <input
                           type="time"
                           className="form-control"
-                          value={formData.time}
-                          name="time"
+                          value={formData.appointmentTime}
+                          name="appointmentTime"
                           onChange={handleFormChange}
                           required
                         ></input>
@@ -182,7 +105,7 @@ function Account() {
                       <button
                         type="submit"
                         className="btn btn-secondary btn-lg"
-                        onClick={handleSubmit}
+                        disabled={loading}
                       >
                         {loading ? "Loading..." : "Book Now"}
                       </button>

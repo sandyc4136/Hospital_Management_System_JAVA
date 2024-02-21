@@ -18,7 +18,6 @@ import { useNavigate } from 'react-router-dom';
         disease:'',
         department:'',
         dateOfBirth:''
-
       });
 
       const [errors, setErrors]=useState({});
@@ -28,23 +27,22 @@ import { useNavigate } from 'react-router-dom';
   
       function handleInput(e) {
           setCredentials({ ...credentials, [e.target.name]: e.target.value })  
-              
+
           };
   
       function signup(e) {
           e.preventDefault();
           setErrors(registerValidation(credentials));  
-          let url = `http://localhost:8080/customer/register`;
+          let url = `http://localhost:8080/registerPatient`;
           axios.post(url,credentials).then((response) => {
-              console.log(response.data);
-              
+               console.log(response.data);
               setResponseData(response);
-              if(response.data.ok || response.data.status){
-                navigate("/");
+              if(response.data.status){
+                navigate("/login");
                 alert("Registered");
               }
-            //   else
-            //       alert("Please fill all the details!");
+              else
+                  alert("Please fill all the details!");
               })
           }
 
@@ -57,7 +55,7 @@ import { useNavigate } from 'react-router-dom';
           <div className="row justify-content-center">
              <div className="col-xl-5 col-lg-8 col-md-8">
               {/* <div className="appointment-form form-wraper"> */}
-                <form onSubmit={signup} method="post">
+                <form action="/" onSubmit={signup} method="post">
                     <div><h3>Sign Up</h3></div>
                     <div className="mb-3">
                     <label><h6>Full name</h6></label>
@@ -84,14 +82,23 @@ import { useNavigate } from 'react-router-dom';
                     </div>
                     <div className="mb-3">
                     <label><h6>Blood Group</h6></label>
-                    <input
-                        type="text"
+                    <select
                         className="form-control"
                         placeholder="bloodGroup"
                         name="bloodGroup"
                         onChange={handleInput}
-                        required
-                    />
+                        required >
+                    <option>Select</option>
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+
+                    </select>
                     </div>
                     <div className="mb-3">
                     <label><h6>Health Issue</h6></label>

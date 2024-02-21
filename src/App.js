@@ -11,6 +11,7 @@ import { Routes, Route } from "react-router-dom";
 import Team from "./Sections/Team";
 import Signup from "./Components/Signup";
 import BookingStatus from "./Components/BookingStatus";
+import Profile from "./Components/profile";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="*" element={<NotFound />} />
       <Route path="/Signup" element={<Signup />} />
       <Route path="/booking_status" element={<BookingStatus />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }

@@ -54,8 +54,17 @@ function NavBars() {
                 </Link> */}
               {/* </NavDropdown>  */}
 
-              { isLogin &&  <Link to={"/booking"} className="nav-link">Booking </Link> }
-
+              {/* { isLogin &&  (<Link to={"/booking"} className="nav-link">Booking </Link>  && <Link to={"/profile"} className="nav-link">Profile </Link>)} */}
+              {isLogin && (
+              <>
+                <Link to={"/booking"} className="nav-link">
+                  Booking
+                </Link>
+                <Link to={"/profile"} className="nav-link">
+                  Profile
+                </Link>
+              </>
+              )}
               {isLogin ?  (
                   <Link
                     to="/"

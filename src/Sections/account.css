@@ -83,6 +83,10 @@
   position: relative;
 }
 
+.form-control.custom-select option {
+  color: black;
+}
+
 img {
   border-style: none;
   height: auto;
